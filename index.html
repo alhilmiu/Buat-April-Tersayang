@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f7ebe7">
+<meta name="description" content="Sebuah surat kecil untuk April.">
+<title>Untuk April Sayang ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Parisienne&display=swap');
+
+:root{
+  --bg:#f8eeea;
+  --paper:#fffaf7;
+  --ink:#302625;
+  --muted:#8b7771;
+  --rose:#c87983;
+  --rose2:#e9c4c6;
+  --line:#ead8d2;
+  --shadow:0 25px 70px rgba(73,48,42,.11);
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit}
+button:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
+
+#app{height:100%;width:100%;position:relative;overflow:hidden}
+.bg{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+  background:
+    radial-gradient(circle at 15% 85%,rgba(231,210,231,.35),transparent 30%),
+    radial-gradient(circle at 88% 8%,rgba(240,199,202,.4),transparent 32%);
+}
+.bg:before,.bg:after{
+  content:"";position:absolute;border-radius:50%;filter:blur(50px);opacity:.25;
+  width:360px;height:360px;background:#e9c4c6;
+}
+.bg:before{right:-170px;top:-160px}
+.bg:after{left:-190px;bottom:-180px;background:#d8cae5}
+
+.screen{
+  position:absolute;inset:0;z-index:1;
+  padding:74px 22px 42px;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;
+  transform:translateY(25px);
+  transition:opacity .65s ease,transform .65s ease,visibility .65s;
+  overflow-y:auto;
+  scrollbar-width:none;
+}
+.screen::-webkit-scrollbar{display:none}
+.screen.active{opacity:1;visibility:visible;transform:none}
+
+.topbar{
+  position:fixed;z-index:20;top:18px;left:20px;right:20px;
+  display:flex;align-items:center;justify-content:space-between;
+  pointer-events:none;
+}
+.topbar span{
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#a38f89;
+}
+.progress{width:92px;height:2px;background:#e7d7d1;border-radius:10px;overflow:hidden}
+.progress i{display:block;width:0;height:100%;background:var(--rose);transition:width .55s ease}
+
+.wrap{position:relative;z-index:2;width:min(760px,100%);text-align:center}
+.eyebrow{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+}
+h1,h2,h3,.serif{font-family:"Cormorant Garamond",serif}
+h1,h2,h3{margin:0;font-weight:500;line-height:.96}
+h1{font-size:clamp(60px,16vw,118px)}
+h2{font-size:clamp(43px,10vw,78px)}
+h3{font-size:32px}
+.lead{
+  max-width:560px;margin:25px auto 0;
+  font-size:16px;line-height:1.9;color:#665650;
+}
+.script{font-family:"Parisienne",cursive;color:var(--rose);font-size:32px}
+.btn{
+  border:1px solid var(--line);
+  background:rgba(255,250,247,.92);
+  color:var(--ink);
+  border-radius:999px;
+  padding:14px 25px;
+  margin-top:29px;
+  cursor:pointer;
+  box-shadow:0 13px 35px rgba(65,43,39,.08);
+  transition:transform .2s,box-shadow .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 17px 42px rgba(65,43,39,.13)}
+.btn:active{transform:scale(.97)}
+.btn .arrow{color:var(--rose);margin-left:8px}
+.heart{
+  color:var(--rose);font-size:45px;line-height:1;
+  margin-bottom:20px;animation:pulse 2.1s infinite;
+}
+.tiny{font-size:11px;color:#a08f89;margin-top:15px}
+
+/* 01 */
+.opening .lead{max-width:450px}
+.opening .script{margin-top:23px}
+
+/* 02 */
+.photo-wrap{
+  width:min(365px,78vw);aspect-ratio:4/5;margin:0 auto 27px;
+  background:#eee;border:10px solid var(--paper);
+  box-shadow:var(--shadow);transform:rotate(-1.4deg);
+}
+.photo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.quote{
+  max-width:620px;margin:0 auto;
+  font:500 clamp(25px,5vw,34px)/1.3 "Cormorant Garamond",serif;
+}
+.sub{font-size:12px;color:var(--muted);margin-top:12px}
+
+/* 03 */
+.cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:12px;max-width:650px;margin:30px auto;
+}
+.card{
+  min-height:160px;padding:23px 14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#fffaf7cc;border:1px solid var(--line);border-radius:22px;
+  box-shadow:0 12px 35px rgba(70,48,43,.04);
+}
+.card .icon{font-size:25px;color:var(--rose);margin-bottom:10px}
+.card b{font:600 25px "Cormorant Garamond",serif}
+.card p{font-size:11px;line-height:1.6;color:var(--muted);margin:7px 0 0}
+
+/* 04 */
+.reason-big{
+  max-width:620px;margin:30px auto 0;padding:34px 26px;
+  border:1px solid var(--line);background:#fffaf7b8;
+  position:relative;box-shadow:var(--shadow);
+}
+.reason-big:before{
+  content:"“";position:absolute;left:15px;top:-15px;
+  font:100px "Cormorant Garamond",serif;color:#e5bfc3;opacity:.55;
+}
+.reason-big p{
+  position:relative;margin:0;
+  font:500 clamp(25px,5vw,34px)/1.45 "Cormorant Garamond",serif;
+}
+.reason-small{font-size:13px!important;line-height:1.8!important;color:var(--muted)!important;margin-top:18px!important}
+
+/* 05 */
+.timeline{max-width:600px;margin:32px auto;text-align:left}
+.titem{display:grid;grid-template-columns:30px 1fr;gap:16px;margin-bottom:23px}
+.dot{width:11px;height:11px;border:2px solid var(--rose);border-radius:50%;margin-top:7px;position:relative}
+.titem:not(:last-child) .dot:after{
+  content:"";position:absolute;left:3px;top:9px;width:2px;height:48px;background:var(--rose2)
+}
+.titem b{font:600 26px "Cormorant Garamond",serif}
+.titem p{font-size:13px;line-height:1.65;color:var(--muted);margin:3px 0}
+
+/* 06 */
+.letter{
+  max-width:620px;margin:24px auto 0;text-align:left;
+  padding:34px 32px;background:var(--paper);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);position:relative;
+}
+.letter:before{
+  content:"";position:absolute;inset:9px;border:1px solid #f0dfd9;pointer-events:none
+}
+.letter p{
+  position:relative;margin:0 0 15px;
+  font:400 20px/1.65 "Cormorant Garamond",serif;
+}
+.signature{font:28px "Parisienne",cursive;color:var(--rose);margin-top:22px}
+
+/* 07 */
+.future-grid{
+  max-width:620px;margin:30px auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.future{
+  background:#fffaf7cc;border:1px solid var(--line);border-radius:20px;
+  padding:22px;text-align:left;
+}
+.future .num{font-size:10px;letter-spacing:2px;color:var(--rose)}
+.future b{display:block;font:600 26px "Cormorant Garamond",serif;margin-top:7px}
+.future p{font-size:12px;line-height:1.65;color:var(--muted);margin:5px 0 0}
+
+/* 08 */
+.music{
+  max-width:430px;margin:30px auto;padding:26px 25px;
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:25px;box-shadow:var(--shadow);
+}
+.disc{
+  width:100px;height:100px;border-radius:50%;margin:0 auto 18px;
+  background:linear-gradient(135deg,#f0d3d3,#d9cce4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:27px;color:white;box-shadow:0 10px 30px #76534a20;
+  overflow:hidden;
+}
+.disc img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.music b{font:600 27px "Cormorant Garamond",serif}
+.music .small{font-size:11px;color:var(--muted);margin-top:4px}
+.fake-player{height:3px;background:#e8d9d4;margin:20px 0;border-radius:5px}
+.fake-player i{display:block;width:0;height:100%;background:var(--rose);transition:width .15s linear}
+.music-row{display:flex;align-items:center;justify-content:center;gap:20px}
+.play{
+  width:52px;height:52px;border:0;border-radius:50%;
+  background:var(--ink);color:white;cursor:pointer
+}
+
+/* 09 */
+.final h2{max-width:650px;margin:auto}
+.final .bigline{
+  max-width:590px;margin:24px auto 0;
+  font:500 clamp(27px,6vw,39px)/1.35 "Cormorant Garamond",serif;
+}
+.final .endnote{font-size:11px;letter-spacing:1.4px;color:var(--muted);margin-top:28px}
+
+.fall{
+  position:fixed;z-index:50;pointer-events:none;color:var(--rose);
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0);opacity:0}
+  15%{opacity:.75}
+  100%{transform:translateY(110vh) rotate(420deg);opacity:0}
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  10%{transform:scale(1.14)}
+  20%{transform:scale(1)}
+}
+@media(max-width:600px){
+  .screen{padding-top:68px;padding-bottom:30px}
+  .cards{grid-template-columns:1fr;max-width:330px}
+  .card{min-height:105px;padding:15px}
+  .card .icon{margin-bottom:3px}
+  .future-grid{grid-template-columns:1fr;max-width:330px}
+  .future{padding:18px}
+  .letter{padding:27px 22px}
+  .letter p{font-size:19px}
+  .reason-big{padding:29px 20px}
+}
+</style>
+</head>
+
+<body>
+<div id="app">
+  <div class="bg"></div>
+
+  <!-- 01 -->
+  <section class="screen active opening" data-page="1">
+    <div class="topbar"><span>untuk april ♡</span><span>01 / 09</span></div>
+    <div class="wrap">
+      <div class="heart">♡</div>
+      <div class="eyebrow">a little thing from your Hilmine</div>
+      <h1>Hai,<br>April.</h1>
+      <p class="lead">Sebelum kamu mulai menjalani hari, mas ada sesuatu buat kamu.</p>
+      <div class="script">Buka pelan-pelan...</div>
+      <button class="btn" type="button" onclick="nextPage()">Buka suratnya <span class="arrow">→</span></button>
+      <div class="tiny">jangan di-skip ya :)</div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="screen" data-page="2">
+    <div class="topbar"><span>tentang kamu</span><span>02 / 09</span></div>
+    <div class="wrap">
+      <div class="eyebrow">satu hal yang mas mau April tau</div>
+      <div class="photo-wrap"><img src="foto-1.jpg" alt="Foto kita"></div>
+      <p class="quote">“Mas beruntung banget ada April di hidup mas.”</p>
+      <p class="sub">Dari sekian banyak orang di dunia, entah kenapa mas akhirnya ketemu sama April.</p>
+      <button class="btn" type="button" onclick="nextPage()">Lanjut <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="screen" data-page="3">
+    <div class="topbar"><span>hal-hal kecil</span><span>03 / 09</span></div>
+    <div class="wrap">
+      <div class="eyebrow">yang mungkin April gak sadar</div>
+      <h2>Mas suka<br>banyak hal dari kamu.</h2>
+      <div class="cards">
+        <div class="card"><div class="icon">♡</div><b>Senyummu</b><p>Selalu punya cara membuat hari mas terasa lebih ringan.</p></div>
+        <div class="card"><div class="icon">✦</div><b>Cerita kamu</b><p>Bahkan cerita random pun tetap pengen mas denger.</p></div>
+        <div class="card"><div class="icon">∞</div><b>April</b><p>Bukan karena sempurna. Tapi karena April adalah April.</p></div>
+      </div>
+      <button class="btn" type="button" onclick="nextPage()">Tapi bukan itu aja <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="screen" data-page="4">
+    <div class="topbar"><span>alasan mas</span><span>04 / 09</span></div>
+    <div class="wrap">
+      <div class="heart">♡</div>
+      <div class="eyebrow">yang paling ingin mas sampaikan</div>
+      <h2>Kamu buat<br>mas pengen terus maju.</h2>
+      <div class="reason-big">
+        <p>“Sekarang mungkin mas masih di bawah. Tapi mas gak mau berhenti di sini.”</p>
+        <p class="reason-small">Mas Pengen terus berjuang, memperbaiki diri, dan suatu hari nanti bisa berdiri lebih tinggi — bukan hanya untuk mas, tapi juga untuk masa depan yang kita bayangkan.</p>
+      </div>
+      <button class="btn" type="button" onclick="nextPage()">Lanjut <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="screen" data-page="5">
+    <div class="topbar"><span>tentang perjalanan kita</span><span>05 / 09</span></div>
+    <div class="wrap">
+      <div class="eyebrow">mas gak mau lupa</div>
+      <h2>Yang sedang<br>kita usahakan.</h2>
+      <div class="timeline">
+        <div class="titem"><div class="dot"></div><div><b>Tetap memilih satu sama lain</b><p>Meski ada hari yang mudah, dan ada juga hari yang terasa berat.</p></div></div>
+        <div class="titem"><div class="dot"></div><div><b>Menjadi lebih baik</b><p>Pelan-pelan belajar menjadi versi diri yang lebih siap.</p></div></div>
+        <div class="titem"><div class="dot"></div><div><b>Sampai jarak ini selesai</b><p>Sampai nanti kita gak perlu lagi menitipkan rindu lewat layar.</p></div></div>
+      </div>
+      <button class="btn" type="button" onclick="nextPage()">Baca surat mas <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="screen" data-page="6">
+    <div class="topbar"><span>surat kecil</span><span>06 / 09</span></div>
+    <div class="wrap">
+      <div class="eyebrow">untuk kamu, dari mas</div>
+      <div class="letter">
+        <p>April,</p>
+        <p>Maaf kalau sampai hari ini mas masih belum bisa membahagiakan April seperti yang mas inginkan.</p>
+        <p>Maaf kalau mas masih berada di bawah, masih banyak kurangnya, dan masih banyak hal yang harus mas perjuangkan.</p>
+        <p>Tapi justru itu, mas gak mau berhenti. April jadi salah satu alasan terbesar yang membuat mas ingin terus bangun, terus maju, terus berjuang, dan terus memperbaiki diri.</p>
+        <p>Mas pengen suatu hari nanti bisa lihat lagi ke belakang dan bilang, “ternyata semua perjuangan itu ada hasilnya.” Dan kalau hari itu datang, mas pengen April ada di sana.</p>
+        <p>Terima kasih sudah ada di hidup mas. Terima kasih sudah menjadi seseorang yang begitu berarti.</p>
+        <p>Mas sayang banget sama April. ❤️</p>
+        <div class="signature">— Your Hilmine</div>
+      </div>
+      <button class="btn" type="button" onclick="nextPage()">Masih ada satu hal lagi <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="screen" data-page="7">
+    <div class="topbar"><span>yang mas bayangkan</span><span>07 / 09</span></div>
+    <div class="wrap">
+      <div class="eyebrow">bukan janji besar</div>
+      <h2>Cuma beberapa<br>hal sederhana.</h2>
+      <div class="future-grid">
+        <div class="future"><div class="num">01</div><b>Bangun bersama</b><p>Gak perlu lagi “selamat pagi” lewat chat. Cukup saling lihat dan tersenyum.</p></div>
+        <div class="future"><div class="num">02</div><b>Pulang bersama</b><p>Ada seseorang yang bisa mas cari setelah hari yang panjang.</p></div>
+        <div class="future"><div class="num">03</div><b>Berjuang bersama</b><p>Bukan siapa yang paling cepat, tapi bagaimana kita sampai bersama.</p></div>
+        <div class="future"><div class="num">04</div><b>Menjadi rumah</b><p>Tempat kita bisa menjadi diri sendiri dan tetap merasa aman.</p></div>
+      </div>
+      <p class="sub">Suatu hari nanti, kita lihat kembali semua ini dari tempat yang sama.</p>
+      <button class="btn" type="button" onclick="nextPage()">Satu pesan terakhir <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section class="screen" data-page="8">
+    <div class="topbar"><span>pesan terakhir</span><span>08 / 09</span></div>
+    <div class="wrap">
+      <div class="eyebrow">kalau suatu hari kamu lupa...</div>
+      <div class="music">
+        <div class="disc"><img src="foto-2.jpg" alt="Kenangan kita"></div>
+        <b>Untuk April</b>
+        <div class="small">sebuah pesan dari seseorang yang sayang kamu</div>
+        <audio id="loveSong" preload="metadata" src="lagu.mp3"></audio>
+        <div class="fake-player" id="songProgress"><i id="songProgressFill"></i></div>
+        <div class="music-row">
+          <span id="songCurrent">0:00</span>
+          <button class="play" id="playBtn" type="button" onclick="playMessage()" aria-label="Putar lagu">▶</button>
+          <span id="songDuration">0:00</span>
+        </div>
+        <div id="audioStatus" class="small" style="margin-top:14px">Kita Usahakan Rumah Itu · Sal Priadi</div>
+      </div>
+      <p class="quote">“Kalau kamu lupa seberapa berarti kamu buat mas, buka halaman ini lagi.”</p>
+      <button class="btn" type="button" onclick="nextPage()">Selesai <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section class="screen" data-page="9">
+    <div class="bg"></div>
+    <div class="topbar"><span>selesai, tapi bukan akhir</span><span>09 / 09</span></div>
+    <div class="wrap final">
+      <div class="heart">♥</div>
+      <div class="eyebrow">selamat pagi, sayang</div>
+      <h2>Semoga hari ini<br> Menyenangkan buat April.</h2>
+      <p class="bigline">“Dan semoga suatu hari nanti, mas gak perlu lagi ngucapin semua ini lewat Chat atau Call. Karena April sudah ada di sebelah mas.”</p>
+      <div class="script">Mas sayang banget sama April.</div>
+      <div class="endnote">a little moment in every day, until we make it home.</div>
+      <button class="btn" type="button" onclick="restart()">Baca lagi dari awal <span class="arrow">↻</span></button>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var current = 1;
+  var total = 9;
+  var screens = document.querySelectorAll(".screen");
+
+  function updateProgress(){
+    var bar = document.querySelector(".progress");
+    if(!bar){
+      var top = document.querySelector(".topbar");
+      var holder = document.createElement("div");
+      holder.className="progress";
+      holder.innerHTML="<i></i>";
+      top.appendChild(holder);
+      bar=holder;
+    }
+    bar.querySelector("i").style.width=((current/total)*100)+"%";
+  }
+
+  window.showPage = function(n){
+    n = Number(n);
+    if(!Number.isFinite(n)) return;
+    if(n < 1) n=1;
+    if(n > total) n=total;
+
+    screens.forEach(function(s){s.classList.remove("active");});
+    var target=document.querySelector('.screen[data-page="'+n+'"]');
+    if(target){
+      target.classList.add("active");
+      target.scrollTop=0;
+    }
+    current=n;
+    updateProgress();
+    if(n===9) makeHearts();
+  };
+
+  window.nextPage=function(){
+    showPage(current+1);
+  };
+
+  window.restart=function(){
+    showPage(1);
+  };
+
+  var audio=document.getElementById("loveSong");
+  var playBtn=document.getElementById("playBtn");
+  var fill=document.getElementById("songProgressFill");
+  var currentEl=document.getElementById("songCurrent");
+  var durationEl=document.getElementById("songDuration");
+  var statusEl=document.getElementById("audioStatus");
+
+  function fmt(sec){
+    if(!Number.isFinite(sec)) return "0:00";
+    sec=Math.max(0,Math.floor(sec));
+    var m=Math.floor(sec/60), s=sec%60;
+    return m+":"+(s<10?"0":"")+s;
+  }
+  window.playMessage=function(){
+    if(!audio) return;
+    if(audio.paused){
+      audio.play().then(function(){
+        playBtn.textContent="❚❚";
+        statusEl.textContent="Sedang diputar · Kita Usahakan Rumah Itu — Sal Priadi ♡";
+      }).catch(function(){
+        statusEl.textContent="Tekan tombol Play sekali lagi untuk memutar lagu.";
+      });
+    }else{
+      audio.pause();
+      playBtn.textContent="▶";
+      statusEl.textContent="Lagu dijeda. Tekan Play untuk melanjutkan ♡";
+    }
+  };
+  audio.addEventListener("loadedmetadata",function(){durationEl.textContent=fmt(audio.duration);});
+  audio.addEventListener("timeupdate",function(){
+    currentEl.textContent=fmt(audio.currentTime);
+    var pct=audio.duration?(audio.currentTime/audio.duration)*100:0;
+    fill.style.width=pct+"%";
+  });
+  audio.addEventListener("ended",function(){
+    playBtn.textContent="▶";
+    fill.style.width="0%";
+    currentEl.textContent="0:00";
+    statusEl.textContent="Selesai. Semoga lagunya selalu mengingatkan kamu pada mas ♡";
+  });
+  document.getElementById("songProgress").addEventListener("click",function(e){
+    if(!audio.duration) return;
+    var r=this.getBoundingClientRect();
+    audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+  });
+
+  function makeHearts(){
+    for(var i=0;i<24;i++){
+      (function(index){
+        setTimeout(function(){
+          var h=document.createElement("span");
+          h.className="fall";
+          h.textContent=Math.random()>0.45 ? "♡" : "♥";
+          h.style.left=(Math.random()*100)+"vw";
+          h.style.top="-20px";
+          h.style.fontSize=(10+Math.random()*15)+"px";
+          h.style.animationDuration=(5+Math.random()*5)+"s";
+          document.body.appendChild(h);
+          setTimeout(function(){h.remove();},11000);
+        },index*80);
+      })(i);
+    }
+  }
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>
