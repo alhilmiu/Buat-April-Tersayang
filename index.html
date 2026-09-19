@@ -250,6 +250,9 @@ h3{font-size:32px}
   .future{padding:18px}
   .letter{padding:27px 22px}
   .letter p{font-size:19px}
+  /* Surat dimulai dari atas di layar HP agar paragraf pertama tidak terpotong. */
+  .letter-page{align-items:flex-start}
+  .letter-page .wrap{margin-top:0}
   .reason-big{padding:29px 20px}
 }
 </style>
@@ -331,7 +334,7 @@ h3{font-size:32px}
   </section>
 
   <!-- 06 -->
-  <section class="screen" data-page="6">
+  <section class="screen letter-page" data-page="6">
     <div class="topbar"><span>surat kecil</span><span>06 / 09</span></div>
     <div class="wrap">
       <div class="eyebrow">untuk kamu, dari mas</div>
@@ -360,6 +363,9 @@ h3{font-size:32px}
         <div class="future"><div class="num">02</div><b>Pulang bersama</b><p>Ada seseorang yang bisa mas cari setelah hari yang panjang.</p></div>
         <div class="future"><div class="num">03</div><b>Berjuang bersama</b><p>Bukan siapa yang paling cepat, tapi bagaimana kita sampai bersama.</p></div>
         <div class="future"><div class="num">04</div><b>Menjadi rumah</b><p>Tempat kita bisa menjadi diri sendiri dan tetap merasa aman.</p></div>
+      </div>
+      <div class="photo-wrap" style="width:min(330px,78vw);aspect-ratio:4/5;margin:22px auto 0;">
+        <img src="foto-2.jpg" alt="Kenangan kita">
       </div>
       <p class="sub">Suatu hari nanti, kita lihat kembali semua ini dari tempat yang sama.</p>
       <button class="btn" type="button" onclick="nextPage()">Satu pesan terakhir <span class="arrow">→</span></button>
@@ -398,7 +404,7 @@ h3{font-size:32px}
       <div class="eyebrow">selamat pagi, sayang</div>
       <h2>Semoga hari ini<br> Menyenangkan buat April.</h2>
       <p class="bigline">“Dan semoga suatu hari nanti, mas gak perlu lagi ngucapin semua ini lewat Chat atau Call. Karena April sudah ada di sebelah mas.”</p>
-      <div class="script">Mas sayang banget sama April.</div>
+      <div class="script">Mas sayang banget sama kamu.</div>
       <div class="endnote">a little moment in every day, until we make it home.</div>
       <button class="btn" type="button" onclick="restart()">Baca lagi dari awal <span class="arrow">↻</span></button>
     </div>
